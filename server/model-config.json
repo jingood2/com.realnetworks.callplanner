@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ]
+  },
+  "User": {
+    "dataSource": "db",
+    "public": false
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Subscriber": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "Plan": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "callHistory": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "Attendee": {
+    "dataSource": "mongoDS",
+    "public": true
+  },
+  "History": {
+    "dataSource": "mongoDS",
+    "public": true
+  }
+}
