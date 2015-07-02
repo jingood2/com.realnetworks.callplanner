@@ -2,6 +2,8 @@
 //var app = require('../../server/server');
 var _ = require('underscore');
 var scheduler = require('../../server/lib/scheduler.js');
+var datasource = require('../../server/datasources.development');
+
 
 module.exports = function(Plan) {
 
@@ -40,113 +42,6 @@ module.exports = function(Plan) {
 
   );
 
-  // request handler function
-  Plan.callPlan = function(request, cb) {
-
-    var app = Plan.app;
-    var plan = request;
-    var Subscriber = app.models.Subscriber;
-    var response;
-
-    Plan.create(plan,function(err,planObj){
-
-      // before create job
-      var attendeeTels = [];
-
-      if(err) return console.trace(err);
-
-      attendees = planObj.__data.attendees;
-
-      attendees.forEach(function(attendee){
-
-        attendeeTels.push(attendee.tel);
-
-      });
-
-      console.log(attendeeTels);
-
-      // find exchange email for member from Subscriber
-      Subscriber.find({where: {id: {inq: attendeeTels }}}, function(err, subsObj) {
-
-        if(err) {
-          // ToDo: rollback created Plan
-          return console.trace(err);
-        }
-
-        _.each(subsObj, function(sub){
-          _.each(attendees, function(attendee) {
-            attendee.planId = planObj.id;
-            if (sub.tel === attendee.tel) {
-              attendee.userId = sub.id;
-              //attendee.exchangeEmail = sub.exchangeEmail;
-              //attendee.exchangePassword = sub.exchangePassword;
-            }
-          });
-        });
-
-        console.log(attendees);
-
-        // add members included in the lan to attendee
-
-        app.models.Attendee.create(attendees, function(err,attendObj){
-          if(err) {
-            // ToDo: rollback created Plan
-
-            return console.log(err);
-          }
-
-        });
-
-        response = planObj;
-        cb(null, response);
-      });
-
-    });
-
-
-  } // remote method
-
-  Plan.remoteMethod(
-    'callPlan',
-    {
-      accepts: { arg: 'data', type: 'object', http:{source: 'body'}},
-      http: {path: '/callPlan', verb: 'post'},
-      returns :
-        { arg: 'plan', type: 'array'}
-    }
-
-  );
-
-
-  /*
-   * remote hook session
-   */
-  Plan.beforeRemote('callPlan', function(ctx, affectedModelInstance, next) {
-
-    var req = ctx.req;
-
-    if(ctx.req.accessToken) {
-      // set FK for subscriber
-      req.body.ownerId = req.accessToken.userId;
-      next();
-    } else {
-      req.body.ownerId = req.body.id;
-      next(new Error("must be logged in to create plan"));
-    }
-
-  });
-
-  Plan.afterRemote('callPlan', function(ctx,affectedModelInstance, next){
-
-    // ToDo
-    next();
-
-  })
-
-  Plan.afterRemoteError('callPlan', function(ctx,affectedModelInstance, next){
-
-  })
-
   Plan.beforeRemote('create', function(ctx, affectedModelInstance, next) {
 
     var req = ctx.req;
@@ -166,12 +61,23 @@ module.exports = function(Plan) {
 
   Plan.afterRemote('create', function(ctx, plan, next) {
 
-    var req = ctx.req;
-    console.log('[afterRemote] Plan create..');
+    var redis = require('redis');
+    var client = redis.createClient(datasource.redis.port,datasource.redis.host);
 
+    client.on("error", function (err) {
+      console.log("error event - " + client.host + ":" + client.port + " - " + err);
+    });
 
-    scheduler.addPlanJob(plan.id,plan);
+    client.lpop("conferenceId",function(err,confId){
 
+      if(err){
+        console.log('failed to get a free conferenceId!');
+        console.stack(err);
+      }
+
+      scheduler.addPlanJob(plan.id,plan,confId);
+
+    });
 
     next();
 
@@ -181,7 +87,6 @@ module.exports = function(Plan) {
 
     var app = Plan.app;
     var attendees = ctx.instance.__data.attendees;
-
 
     // find exchange email for member from Subscriber
     app.models.Subscriber.find({where: {tel: {inq: _.pluck(attendees,'tel') }}}, function(err, subsObj) {

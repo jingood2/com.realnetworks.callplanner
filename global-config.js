@@ -25,11 +25,15 @@ conf.restApiUrl = url.format({
   pathname: conf.restApiRoot
 });
 
-conf.agendaDB = {
-  hostname: '192.168.4.29',
-  port: 27017
+conf.conferenceNum = {
+  prefix: '0700000',
+  min: 0000,
+  max: 1111
 };
 
-
+conf.familyCallServer = {
+  host: '221.146.204.182',
+  port: 9087
+}
 
 module.exports = conf;

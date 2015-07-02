@@ -7,9 +7,10 @@ var Agenda = require('agenda');
 var request = require('request');
 var app = require('../server');
 var _ = require('underscore');
-var db = require('../datasources.development.js');
+var datasource = require('../datasources.development.js');
+var conf = require('../../global-config');
 
-var connectionOpts = db.mongoDS.host + ':' + db.mongoDS.port + '/' + db.mongoDS.database;
+var connectionOpts = datasource.mongodb.host + ':' + datasource.mongodb.port + '/' + datasource.mongodb.database;
 var agenda = new Agenda({db: {address: connectionOpts }});
 
 exports.planStartAt = (function(repeat,scheduledAt) {
@@ -46,7 +47,7 @@ exports.planStartAt = (function(repeat,scheduledAt) {
 });
 
 
-exports.addPlanJob = function(jobName, data) {
+exports.addPlanJob = function(jobName, data,pincode) {
 
     if(data.enabled == false) {
         console.log('disabled planCall id : ' + data.id);
@@ -66,12 +67,11 @@ exports.addPlanJob = function(jobName, data) {
         console.log('recordFile :' + recordFilename);
 
         // ToDo : Find Free conference call number
-        //        Now this conference call number used by jobName
 
 
         reqBody = {
             "method" : "INIT",
-            "id": jobName,                      // jobName -> Free conference call number
+            "id": pincode,                      // jobName -> Free conference call number
             "record": job.attrs.data.record,
             "recordFilename" : recordFilename,
             "callType" : job.attrs.data.callType,
@@ -81,36 +81,11 @@ exports.addPlanJob = function(jobName, data) {
         console.log(JSON.stringify(reqBody));
 
         request({
-            url: "http://221.146.204.182:9087/FamilyCallCore/FamilyCallHttpServlet",
+            url: "http://" + conf.familyCallServer.host + ":" + conf.familyCallServer.port + "/FamilyCallCore/FamilyCallHttpServlet",
             method: "POST",
             json: true,
             body: reqBody
         }, function( error, response, body ) {
-
-            var calledAt = new Date();
-
-            // ToDo : app.models.History is written when Call is terminated.
-            app.models.History.create({
-                planId: job.attrs.data.id,
-                plannerId: job.attrs.data.plannerId,
-                planInfo : {
-                    'title': job.attrs.data.title,
-                    'enabled': job.attrs.data.enabled,
-                    'callType': job.attrs.data.callType,
-                    'record': job.attrs.data.record,
-                    'recordFilename' : recordFilename,
-                    'ment': job.attrs.data.ment,
-                    'scheduledAt': job.attrs.data.scheduledAt,
-                    'repeat': job.attrs.data.repeat,
-                    'attendees': job.attrs.data.attendees},
-                planCalledAt : calledAt,
-                result : 200},function(err,obj) {
-
-                if(error) {
-                    console.log(err);
-                }
-            });
-
 
             if(!error && response.statusCode == 200) {
 
@@ -119,6 +94,7 @@ exports.addPlanJob = function(jobName, data) {
                 // ToDo : app.models.History is written when Call is terminated.
                 app.models.History.create({
                     planId: job.attrs.data.id,
+                    pincode : pincode,
                     plannerId: job.attrs.data.plannerId,
                     planInfo : {
                         'title': job.attrs.data.title,
@@ -130,7 +106,7 @@ exports.addPlanJob = function(jobName, data) {
                         'scheduledAt': job.attrs.data.scheduledAt,
                         'repeat': job.attrs.data.repeat,
                         'attendees': job.attrs.data.attendees},
-                    planCalledAt : calledAt,
+                    startTime : calledAt,
                     result : response.statusCode},function(err,obj) {
 
                     if(error) {

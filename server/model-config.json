@@ -28,23 +28,19 @@
     "public": false
   },
   "Subscriber": {
-    "dataSource": "mongoDS",
+    "dataSource": "mongodb",
     "public": true
   },
   "Plan": {
-    "dataSource": "mongoDS",
-    "public": true
-  },
-  "callHistory": {
-    "dataSource": "mongoDS",
+    "dataSource": "mongodb",
     "public": true
   },
   "Attendee": {
-    "dataSource": "mongoDS",
+    "dataSource": "mongodb",
     "public": true
   },
   "History": {
-    "dataSource": "mongoDS",
+    "dataSource": "mongodb",
     "public": true
   }
 }

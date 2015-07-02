@@ -9,7 +9,10 @@
     "planInfo": {
       "type": "object"
     },
-    "planCalledAt": {
+    "startTime": {
+      "type": "date"
+    },
+    "endTime": {
       "type": "date"
     },
     "callResult": {
