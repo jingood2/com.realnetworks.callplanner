@@ -10,7 +10,6 @@ module.exports = {
   isDevEnv: isDevEnv,
   indexFile: require.resolve(isDevEnv ?
     '../client/index.html' : '../client/dist/index.html'),
-  port: GLOBAL_CONFIG.port,
   legacyExplorer: GLOBAL_CONFIG.legacyExplorer,
 
   remoting: {

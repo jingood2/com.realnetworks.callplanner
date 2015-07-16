@@ -38,7 +38,7 @@
     },
     "callState": {
       "type": "string",
-      "default": "hang up"
+      "default": "Disconnected"
     },
     "locationPoint": {
       "type": "geopoint",
@@ -50,8 +50,8 @@
       ]
     },
     "record": {
-      "type": "boolean",
-      "default": false
+      "type": "string",
+      "default": "false"
     }
   },
   "validations": [],

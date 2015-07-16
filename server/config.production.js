@@ -3,9 +3,9 @@ var GLOBAL_CONFIG = require('../global-config');
 var isDevEnv = (process.env.NODE_ENV || 'production') === 'production';
 
 module.exports = {
-  host: process.env.CUSTOM_HOST,
-  port: GLOBAL_CONFIG.port,
-  hostname: GLOBAL_CONFIG.hostname,
+  host: 'localhost',
+  port: 4500,
+  hostname: 'localhost',
   restApiRoot: GLOBAL_CONFIG.restApiRoot,
   livereload: process.env.LIVE_RELOAD,
   isDevEnv: isDevEnv,

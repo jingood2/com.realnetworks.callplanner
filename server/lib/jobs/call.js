@@ -1,14 +1,14 @@
 /**
  *
- * Created by kimjin-young on 2015. 6. 24..
+ * Created by kimjin-young on 2015. 7. 2..
  */
 
 var Agenda = require('agenda');
 var request = require('request');
 var app = require('../server');
 var _ = require('underscore');
-var datasource = require('../datasources.development.js');
-var conf = require('../../global-config');
+var datasource = require('../../datasources.development.js');
+var conf = require('../../../global-config');
 
 var connectionOpts = datasource.mongodb.host + ':' + datasource.mongodb.port + '/' + datasource.mongodb.database;
 var agenda = new Agenda({db: {address: connectionOpts }});
@@ -106,7 +106,7 @@ exports.addPlanJob = function(jobName, data,pincode) {
                         'scheduledAt': job.attrs.data.scheduledAt,
                         'repeat': job.attrs.data.repeat,
                         'attendees': job.attrs.data.attendees},
-                    startTime : calledAt,
+                    planCalledAt : calledAt,
                     result : response.statusCode},function(err,obj) {
 
                     if(error) {
@@ -159,3 +159,4 @@ exports.removePlanJobArray = function(jobArray) {
 
     });
 }
+
