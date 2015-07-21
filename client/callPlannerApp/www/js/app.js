@@ -10,7 +10,8 @@ angular.module('app', [
   'ngRoute',
   'ngCookies',
   'lbServices',
-  'app.controllers'])
+  'app.controllers',
+  'com.module.users'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -31,6 +32,11 @@ angular.module('app', [
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
+  .state('intro',{
+    url: '/intro',
+    templateUrl: 'modules/users/views/intro.html',
+    controller: 'IntroCtrl'
+  })
   .state('tour', {
     url: '/tour',
     templateUrl: 'views/tour/tour.html',
@@ -81,5 +87,5 @@ angular.module('app', [
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tour');
+  $urlRouterProvider.otherwise('/intro');
 });
