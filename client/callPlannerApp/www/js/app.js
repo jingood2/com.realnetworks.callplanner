@@ -5,6 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('app', [
+  'config',
   'ionic',
   'ui.router',
   'ngRoute',
@@ -88,4 +89,9 @@ angular.module('app', [
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/intro');
+})
+
+.config(function(LoopBackResourceProvider) {
+  LoopBackResourceProvider.setAuthHeader('X-Access-Token');
+  LoopBackResourceProvider.setUrlBase("http://localhost:4000/api/v2")
 });

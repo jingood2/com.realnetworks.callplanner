@@ -3,8 +3,8 @@
  * Created by kimjin-young on 2015. 7. 21..
  */
 
-angular.module('com.module.users',[])
-.controller('IntroCtrl',function($scope, $ionicModal,$timeout){
+angular.module('com.module.users')
+.controller('IntroCtrl',function($scope, $ionicModal){
 
     // Create the login modal that we will use later
     $ionicModal.fromTemplateUrl('modules/users/views/modal-login.html', {

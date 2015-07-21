@@ -2,7 +2,7 @@
  * Created by kimjin-young on 2015. 7. 21..
  */
 
-angular.module('com.module.users',[])
+angular.module('com.module.users')
 .controller('LoginCtrl',function($scope,$state,Subscriber,$location){
 
     // With the new view caching in Ionic, Controllers are only called
