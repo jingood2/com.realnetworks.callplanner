@@ -1,4 +1,11 @@
 {
   "name": "callplannerApp",
-  "app_id": ""
+  "app_id": "",
+  "proxies": [
+      {
+        "path": "/api/v2",
+        "proxyUrl": "http://192.168.4.29:4000/api/v2"
+      }
+  ]
 }
+
