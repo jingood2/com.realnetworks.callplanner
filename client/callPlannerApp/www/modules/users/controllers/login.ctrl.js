@@ -3,7 +3,7 @@
  */
 
 angular.module('com.module.users')
-.controller('LoginCtrl',function($scope,$state,Subscriber,$location){
+.controller('LoginCtrl',function($scope,$state,$location,Subscriber,$ionicModal){
 
     // With the new view caching in Ionic, Controllers are only called
     // when they are recreated or on app start, instead of every page change.
@@ -28,15 +28,12 @@ angular.module('com.module.users')
 
     $scope.login = function() {
 
-      $scope.loginResult = Subscriber.login({
+      Subscriber.login({
         include: 'user',
         rememberMe: $scope.credentials.rememberMe
-      },$scope.credentials,function(Subscriber){
+      },$scope.credentials,function(res){
 
-        console.log(Subscriber.id);     //  access token
-        console.log(Subscriber.ttl);
-        console.log(Subscriber.created);
-        console.log(Subscriber.userId);
+        console.log(res);
 
         var next = $location.nextAfterLogin || '/';
         $location.nextAfterLogin = null;
@@ -45,8 +42,11 @@ angular.module('com.module.users')
           next = '/';
         }
 
-        console.log('next:' + next);
-        $location.path(next);
+       //$scope.oModal1.hide();
+       //$scope.oModal2.hide();
+       $scope.hideAll();
+       //$state.go('app.home');
+       $location.path('/app');
 
       },function(res){
         $scope.loginError = res.data.error;

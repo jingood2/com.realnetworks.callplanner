@@ -12,6 +12,8 @@ angular.module('app', [
   'ngCookies',
   'lbServices',
   'app.controllers',
+  'com.module.core',
+  'com.module.plan',
   'com.module.users'])
 
 .run(function($ionicPlatform) {
@@ -28,8 +30,9 @@ angular.module('app', [
       StatusBar.styleDefault();
     }
   });
-})
+});
 
+  /*
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
@@ -42,6 +45,10 @@ angular.module('app', [
     url: '/tour',
     templateUrl: 'views/tour/tour.html',
     controller: 'TourCtrl'
+  })
+  .state('test', {
+    url: '/test',
+    templateUrl: 'templates/test.html'
   })
 
   .state('app', {
@@ -90,4 +97,5 @@ angular.module('app', [
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/intro');
 });
+*/
 

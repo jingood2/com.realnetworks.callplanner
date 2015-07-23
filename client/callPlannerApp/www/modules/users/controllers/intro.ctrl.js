@@ -13,7 +13,6 @@ angular.module('com.module.users')
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
-      //$scope.modal = modal;
       $scope.oModal1 = modal;
     });
 
@@ -23,7 +22,6 @@ angular.module('com.module.users')
       scope: $scope,
       animation: 'slide-in-up'
     }).then(function(modal) {
-      //$scope.modal = modal;
       $scope.oModal2 = modal;
     });
 
@@ -34,6 +32,11 @@ angular.module('com.module.users')
       else
         $scope.oModal2.hide();
     };
+
+    $scope.hideAll = function() {
+      $scope.oModal1.hide();
+      $scope.oModal2.hide();
+    }
 
     // Open the login modal
     $scope.showModal = function(index) {

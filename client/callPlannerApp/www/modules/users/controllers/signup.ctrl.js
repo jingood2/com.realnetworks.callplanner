@@ -3,7 +3,7 @@
  */
 
 angular.module('com.module.users')
-.controller('SignupCtrl',function($scope,$routeParams,$location,$filter,Subscriber){
+.controller('SignupCtrl',function($scope,$routeParams,$location, $state,$filter,Subscriber){
 
     // Form data for the signup modal
     $scope.registration = {
@@ -15,5 +15,42 @@ angular.module('com.module.users')
     };
 
     $scope.confirmPassword = '';
+
+    $scope.signup = function() {
+
+      Subscriber.create(
+        $scope.registration,
+        function(res) {
+
+          console.log(res);
+
+          Subscriber.login({
+            include: 'user',
+            rememberMe: true
+          },$scope.registration,
+          function(res){
+
+            var next = $location.nextAfterLogin || '/';
+            $location.nextAfterLogin = null;
+
+            if(next === '/intro') {
+              next = '/';
+            }
+
+            $scope.oModal1.hide();
+            $scope.oModal2.hide();
+            $state.go('app.home');
+
+          },
+          function(res){
+            $scope.loginError = res.data.error;
+          });
+        },
+        function(res){
+          console.log(res);
+          $scope.loginError = res.data.error;
+        }
+      );
+    }
 
 });
