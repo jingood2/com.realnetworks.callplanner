@@ -1,5 +1,46 @@
 <ion-view view-title="Plan list">
   <ion-content>
-    <h1>Plan list</h1>
+    <!--
+    <div class="list card">
+      <div class="item item-icon-left item-stable" ng-repeat="plan in planArray">
+        <i class="icon ion-ios-people"></i>
+        <h2>{{plan.plan.title}}</h2>
+        <p>{{plan.plan.scheduledAt}}</p>
+      </div>
+       <div class="item item-icon-left item-stable" >
+        <i class="icon ion-ios-people-outline"></i>
+        <h2>{{planArray[0].plan.title}}</h2>
+        <p>{{planArray[0].plan.scheduledAt}}</p>
+      </div>
+    </div>
+    -->
+
+    <div class="list card" ng-repeat="plan in planArray">
+      <div class="item item-icon-left item-divider">
+        <i class="icon ion-ios-people"></i>
+        <h2>{{plan.plan.title}}</h2>
+      </div>
+      <div class="item item-text-wrap">
+        <p>{{plan.plan.scheduledAt}}</p>
+      </div>
+      <div class="item item-divider">
+        <p><i class="icon ion-ios-person"></i>{{plan.plan.attendees[0].tel}},<i class="icon ion-ios-person"></i>{{plan.plan.attendees[1].tel}}</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="item item-icon-left item-divider">
+        <i class="icon ion-ios-people-outline"></i>
+        <h2>{{planArray[0].plan.title}}</h2>
+      </div>
+      <div class="item item-text-wrap">
+        <p>{{planArray[0].plan.scheduledAt}}</p>
+      </div>
+      <div class="item item-divider">
+        <p><i class="icon ion-ios-person-outline"></i>{{planArray[0].plan.attendees[0].tel}},<i class="icon ion-ios-person-outline"></i>{{planArray[1].plan.attendees[1].tel}}</p>
+      </div>
+
+    </div>
+
+
   </ion-content>
 </ion-view>
