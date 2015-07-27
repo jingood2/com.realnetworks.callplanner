@@ -1,6 +1,28 @@
 <ion-view view-title="Plan list">
+
+   <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+
+      <div class="item card-item" ng-repeat="plan in planArray">
+          <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
+              <div class="item item-avatar item-text-wrap">
+                  <span class="avatar" style="background-image: url('img/intro-realtimes.png');"></span>
+                  <h2> {{plan.plan.title}} </h2>
+                  <p> realnetworks team meeting!</p>
+                  <div class="card-footer text-right">
+                      <i class="icon ion-chatbubbles positive"></i> 1/4
+                      <div class="pull-left">
+                          <i class="icon ion-clock"></i> just now
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </ion-content>      
+
+
+  <!--
   <ion-content>
-    <!--
     <div class="list card">
       <div class="item item-icon-left item-stable" ng-repeat="plan in planArray">
         <i class="icon ion-ios-people"></i>
@@ -13,9 +35,26 @@
         <p>{{planArray[0].plan.scheduledAt}}</p>
       </div>
     </div>
-    -->
 
-    <div class="list card" ng-repeat="plan in planArray">
+    <div class="list card stable-bg" ng-repeat="plan in planArray">
+      <div class="item item-avatar"> 
+        <img src="img/ionic.png">   
+        <h2> {{plan.plan.title}} </h2>
+        <p> realnetworks team meeting!</p>
+      </div>
+
+      <div class="item item-body">
+        The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. 
+      </div>
+
+      <div class="item item-divider">
+        <p><i class="icon ion-ios-person"></i>{{plan.plan.attendees[0].tel}},<i class="icon ion-ios-person"></i>{{plan.plan.attendees[1].tel}}</p>
+      </div>
+    </div>
+
+    </div>
+      
+    </div>
       <div class="item item-icon-left item-divider">
         <i class="icon ion-ios-people"></i>
         <h2>{{plan.plan.title}}</h2>
@@ -27,20 +66,7 @@
         <p><i class="icon ion-ios-person"></i>{{plan.plan.attendees[0].tel}},<i class="icon ion-ios-person"></i>{{plan.plan.attendees[1].tel}}</p>
       </div>
     </div>
-    <div class="card">
-      <div class="item item-icon-left item-divider">
-        <i class="icon ion-ios-people-outline"></i>
-        <h2>{{planArray[0].plan.title}}</h2>
-      </div>
-      <div class="item item-text-wrap">
-        <p>{{planArray[0].plan.scheduledAt}}</p>
-      </div>
-      <div class="item item-divider">
-        <p><i class="icon ion-ios-person-outline"></i>{{planArray[0].plan.attendees[0].tel}},<i class="icon ion-ios-person-outline"></i>{{planArray[1].plan.attendees[1].tel}}</p>
-      </div>
-
-    </div>
-
 
   </ion-content>
+    -->
 </ion-view>

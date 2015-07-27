@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('com.module.plan')
-  .controller('PlanCtrl',function($scope,$state,$location,$stateParams,Plan,Subscriber,LoopBackAuth){
+ 
+  .controller('PlanCtrl',function($rootScope,$timeout, $scope,$state,$location,$stateParams,Plan,Subscriber,LoopBackAuth,ionicMaterialMotion,ionicMaterialInk){
 
     console.log('[PlanCtrl]CurrentState:' + $state.current.name);
 
@@ -33,5 +34,21 @@ angular.module('com.module.plan')
     }
 
     $scope.listPlans();
+
+
+    $rootScope.showHeader();
+    $rootScope.clearFabs();
+    $rootScope.isExpanded = true;
+    $rootScope.setExpanded(true);
+    $rootScope.setHeaderFab('right');
+
+    $timeout(function() {
+        ionicMaterialMotion.fadeSlideIn({
+            selector: '.animate-fade-slide-in .item'
+        });
+    }, 200);
+
+    // Activate ink for controller
+    ionicMaterialInk.displayEffect();
 
   });

@@ -1,8 +1,19 @@
  <ion-view view-title="intro" ng-controller="IntroCtrl">
-    <ion-content style="background-image: url(img/sb1.jpg); height: 100%; width:100%;" padding="false" scroll="false">
+    <ion-content style="background-image: url(img/sb1.jpg); center; background-size: cover;">
+     <div class="hero no-header flat">
+            <div class="content">
+                <div class="app-icon"></div>
+                <h1> Call Planner</h1>
+                <p> Plan your conference </p>
+            </div>
+      </div>
       <div class="button-bar">
         <button class="button button-stable button-clear button-block" ng-click="showModal(1)">로그인</button>
         <button class="button button-stable button-clear button-block" ng-click="showModal(2)">회원가입</button>
       </div>
+			<div class="button-bar social-login">
+				  <button class="button button-small button-border icon-left ion-social-google button-assertive-900">Google+</button>
+          <button class="button button-small button-border icon-left ion-social-facebook button-positive-900">Facebook</button>
+			</div>	
     </ion-content>
  </ion-view>
