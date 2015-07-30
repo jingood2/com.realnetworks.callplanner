@@ -18,7 +18,6 @@ angular.module('com.module.plan')
           console.log(plan);
           $scope.planArray.push(plan);
         });
-
       },function(err){
 
       });

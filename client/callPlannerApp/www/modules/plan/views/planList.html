@@ -1,5 +1,27 @@
 <ion-view view-title="Plan list">
 
+  <ion-nav-buttons side="left">
+    <button class="button-clear" ui-sref="app.home" >
+      Back
+    </button>
+  </ion-nav-buttons>
+
+  <!--
+  <div class="bar bar-header bar-calm-900">
+    <div class="buttons buttons-left header-item">
+      <span class="left-buttons">
+        <button class="button button-icon button-clear ion-navicon"></button>
+      </span>
+    </div>
+    <div class="h1 title title-left light">Header Icons + Fab</div>
+    <div class="buttons buttons-right header-item">
+      <span class="right-buttons"><button class="button button-balanced button-fab">
+        <i class="icon ion-star"></i>
+      </button></span>
+    </div>
+  </div>
+  -->
+
    <ion-content ng-class="{expanded:isExpanded}" >
 
       <div class="item card-item" ng-repeat="plan in planArray">
@@ -17,8 +39,15 @@
               </div>
           </div>
       </div>
-
   </ion-content>
+
+  <div class="bar bar-footer bar-light">
+    <div class="buttons buttons-right">
+      <button class="button button-energized-900 button-fab">
+        <i class="icon ion-plus light"></i>
+      </button>
+    </div>
+  </div>
 
 
   <!--

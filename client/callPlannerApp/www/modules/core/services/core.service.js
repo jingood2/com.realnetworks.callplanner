@@ -18,11 +18,12 @@ angular.module('com.module.core',['ionic'])
           scope: scope,
           cancelText: 'Cancel',
           cancelType: 'button-assertive',
-          okText: 'Cancel',
+          okText: 'Ok',
           okType: 'button-positive'
       }).then(function(res){
         if(res) {
           console.log('OK');
+          scope.createPlan();
         } else {
           console.log('Cancel')
         }

@@ -73,27 +73,6 @@ angular.module('com.module.plan')
       );
     };
 
-    /*
-    // A confirm dialog
-    $scope.showConfirmPlan = function($scope) {
-      return $ionicPopup.confirm({
-        title: 'test',
-        scope: $scope,
-        templateUrl: 'templates/popup.html',
-        buttons: [{
-          text: 'Cancel',
-          type: 'button-assertive'
-        }, {
-          text: '<b>Save</b>',
-          type: 'button-positive',
-          onTap: function(e) {
-            return scope.createPlan();
-          }
-        }]
-      });
-    };
-    */
-
     $scope.showConfirmPlan = function() {
       popupService.showPopup($scope);
     };

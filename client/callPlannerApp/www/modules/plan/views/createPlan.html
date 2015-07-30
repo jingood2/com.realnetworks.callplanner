@@ -73,13 +73,35 @@
   </ion-content>
 
   <script id="templates/popup.html" type="text/ng-template">
-    <div class="card">
+    <div class="list">
+      <a class="item item-icon-left">
+        <i class="icon ion-easel"></i>
+        <span class="item-note">{{plan.title}}</span>
+      </a>
+      <a class="item item-icon-left">
+        <i class="icon ion-calendar"></i>
+        <span class="item-note">{{plan.scheduledAt | date: 'medium'}}</span>
+      </a>
+      <a class="item item-icon-left">
+        <i class="icon ion-ios-recording"></i>
+        <span class="item-note">{{plan.record}}</span>
+      </a>
+
+      <a class="item item-icon-left">
+        <i class="icon ion-person-stalker"></i>
+        <span class="item-note" text-align="left">jinyoung Kim</span><br/>
+        <span class="item-note" text-align="left">minsoo Kim</span><br/>
+        <span class="item-note" text-align="left">teddy Kim</span>
+      </a>
+
+      <!--
       <div class="item item-divider">
         Enter description
       </div>
       <div class="item item-text-wrap nmr-textarea-wrapper">
         <textarea ng-model="description" placeholder="Enter some text"></textarea>
       </div>
+      -->
     </div>
   </script>
 
