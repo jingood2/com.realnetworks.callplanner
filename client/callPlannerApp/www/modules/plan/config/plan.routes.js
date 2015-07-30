@@ -16,16 +16,15 @@ angular.module('com.module.plan')
       .state('app.plan.planList',{
         url: '',
         templateUrl: 'modules/plan/views/planList.html',
-        controller: 'PlanCtrl'
+        controller: 'PlanListCtrl'
       })
       .state('app.plan.contacts',{
         url: '/contacts',
-        templateUrl: 'modules/plan/views/contacts.html',
-        controller: 'PlanCtrl'
+        templateUrl: 'modules/plan/views/contacts.html'
       })
       .state('app.plan.createPlan',{
         url: '/createPlan',
         templateUrl: 'modules/plan/views/createPlan.html',
-        controller: 'PlanCtrl'
+        controller: 'CreatePlanCtrl'
       });
   });

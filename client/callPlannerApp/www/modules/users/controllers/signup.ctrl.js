@@ -3,7 +3,7 @@
  */
 
 angular.module('com.module.users')
-.controller('SignupCtrl',function($scope,$routeParams,$location, $state,$filter,Subscriber){
+.controller('SignupCtrl',function($scope,$routeParams,$location, $state,$filter, Subscriber){
 
     // Form data for the signup modal
     $scope.registration = {

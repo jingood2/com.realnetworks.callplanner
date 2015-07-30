@@ -7,7 +7,7 @@
 angular.module('app', [
   'config',
   'ionic',
-	'ionic-material',	
+	'ionic-material',
   'ui.router',
   'ngRoute',
   'ngCookies',
@@ -15,7 +15,10 @@ angular.module('app', [
   'app.controllers',
   'com.module.core',
   'com.module.plan',
-  'com.module.users'])
+  'com.module.users',
+  'ionic-datepicker',
+  'ionic-timepicker',
+  'mdChips'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -33,5 +36,5 @@ angular.module('app', [
   });
 });
 
- 
+
 

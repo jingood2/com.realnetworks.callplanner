@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('com.module.plan')
- 
-  .controller('PlanCtrl',function($rootScope,$timeout, $scope,$state,$location,$stateParams,Plan,Subscriber,LoopBackAuth,ionicMaterialMotion,ionicMaterialInk){
+
+  .controller('PlanListCtrl',function($rootScope,$timeout, $scope,$state,$location,$stateParams,Plan,Subscriber,LoopBackAuth,ionicMaterialMotion,ionicMaterialInk){
 
     console.log('[PlanCtrl]CurrentState:' + $state.current.name);
 
@@ -18,24 +18,16 @@ angular.module('com.module.plan')
           console.log(plan);
           $scope.planArray.push(plan);
         });
-        //console.log(res.listPlans);
-        /*
-        res.forEach(function(plan){
-
-          planArray.push(plan);
-
-        });
-        */
 
       },function(err){
 
       });
 
-    }
+    }();
 
-    $scope.listPlans();
+    //$scope.listPlans();
 
-
+    /*
     $rootScope.showHeader();
     $rootScope.clearFabs();
     $rootScope.isExpanded = true;
@@ -46,9 +38,11 @@ angular.module('com.module.plan')
         ionicMaterialMotion.fadeSlideIn({
             selector: '.animate-fade-slide-in .item'
         });
-    }, 200);
+    }, 100);
 
     // Activate ink for controller
     ionicMaterialInk.displayEffect();
+
+    */
 
   });

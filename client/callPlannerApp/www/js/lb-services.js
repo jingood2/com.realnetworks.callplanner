@@ -2,6 +2,7 @@
 
 'use strict';
 
+//var urlBase = "http://192.168.4.29:4000/api/v2";
 var urlBase = "/api/v2";
 var authHeader = 'authorization';
 

@@ -1,6 +1,6 @@
 <ion-view view-title="Plan list">
 
-   <ion-content ng-class="{expanded:isExpanded}" class="animate-fade-slide-in">
+   <ion-content ng-class="{expanded:isExpanded}" >
 
       <div class="item card-item" ng-repeat="plan in planArray">
           <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
@@ -18,7 +18,7 @@
           </div>
       </div>
 
-  </ion-content>      
+  </ion-content>
 
 
   <!--
@@ -37,14 +37,14 @@
     </div>
 
     <div class="list card stable-bg" ng-repeat="plan in planArray">
-      <div class="item item-avatar"> 
-        <img src="img/ionic.png">   
+      <div class="item item-avatar">
+        <img src="img/ionic.png">
         <h2> {{plan.plan.title}} </h2>
         <p> realnetworks team meeting!</p>
       </div>
 
       <div class="item item-body">
-        The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it. 
+        The titles of Washed Out's breakthrough song and the first single from Paracosm share the two most important words in Ernest Greene's musical language: feel it.
       </div>
 
       <div class="item item-divider">
@@ -53,7 +53,7 @@
     </div>
 
     </div>
-      
+
     </div>
       <div class="item item-icon-left item-divider">
         <i class="icon ion-ios-people"></i>
